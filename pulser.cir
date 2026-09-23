@@ -1,0 +1,61 @@
+.title KiCad schematic
+.include "C:/Users/C838451874/Documents/KiCad/10.0/SPICE/Custom Models.lib"
+.include "C:/Users/C838451874/Documents/KiCad/10.0/SPICE/Wolfspeed Power C4D Packaged SPICE Model Library.lib"
+.model __D5 D
++           rs=.06
++           cjo=559p
++           bv=650
++           ibv=0.3u
+.model __D6 D
++           rs=.06
++           bv=650
++           ibv=0.3
+R1 Vdrive Net-_D1-K_ 220
+C1_alt1 Net-_D1-K_ GND 0
+XC1 Net-_D1-K_ GND C4AQUBU4100A1WJ
+R8 Net-_D3-common_ Net-_D3-A_ 4k
+R9 Net-_D3-K_ Net-_D3-common_ 4k
+XD3 Net-_D3-A_ Net-_D3-common_ Net-_D3-K_ DSEE30_12A
+XT2 Net-_D5-K_ Earth Net-_D6-A_ Net-_D6-K_ 1_1_transformer
+R3 Net-_Q1-G_ Earth 1k
+XQ1 Net-_Q1-G_ Net-_Q1-C_ GND IXBK75N170A
+R4 Net-_Q1-G_ Net-_D5-K_ 100
+D5 Earth Net-_D5-K_ __D5
+XT1 Net-_D1-K_ Net-_Q1-C_ Net-_D3-A_ Net-_T1-SB_ 3_1_transformer
+XD4 Net-_D3-K_ Net-_D4-common_ Net-_D4-K_ DSEE30_12A
+XD7 Net-_D4-K_ Net-_D7-common_ Net-_D7-K_ DSEE30_12A
+XC2 Net-_D1-K_ Net-_D2-K_ C4AQSBU4300A11J
+R2 Net-_D1-K_ Net-_D2-K_ 110
+XD1 Net-_Q1-C_ Net-_Q1-C_ Net-_D1-K_ NC-D1-0 C4D40120D
+XD2 Net-_Q1-C_ Net-_Q1-C_ Net-_D2-K_ NC-D2-0 C4D40120D
+C2_alt1 Net-_D1-K_ Net-_D2-K_ 0
+XQ2 Net-_D6-A_ Net-_Q2-PadB_ Earth BD135
+R5 Net-_D6-K_ +24V 100
+R6 Earth Net-_Q2-PadB_ 100k
+R7 Net-_Q2-PadB_ AC 100k
+Cpnpball Earth Net-_Q2-PadB_ 100n
+D6 Net-_D6-A_ Net-_D6-K_ __D6
+R11 Net-_D4-K_ Net-_D4-common_ 4k
+R10 Net-_D4-common_ Net-_D3-K_ 4k
+R12 Net-_D7-common_ Net-_D4-K_ 4k
+R13 Net-_D7-K_ Net-_D7-common_ 4k
+
+* simulate the 3kV load as an open-ish circuit
+Rload Net-_D7-K_ Net-_T1-SB_ 1G
+
+V3 Vdrive GND DC 1k 
+V2 +24V Earth DC 24 
+V1 AC Earth PULSE( 0 5 1u 10u 10u 98u 1m )
+
+.control
+    tran 10n 1m
+    plot AC title "input signal voltage"
+    plot v1#branch title "input signal current"
+    plot v(AC) - v(Net-_Q2-PadB_) title "voltage across input series resistor"
+    plot v(Net-_Q2-PadB_) title "base voltage"
+    plot v(Net-_D6-A_) title "collector voltage"
+    plot v(Net-_D6-K_) - v(Net-_D6-A_) title "transformer primary voltage"
+    * plot v(Net-_D7-K_) - v(Net-_T1-SB_)
+.endc
+
+.end

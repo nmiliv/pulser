@@ -1,0 +1,53 @@
+LTspice 26.0.2 for Windows
+Circuit: C:\Users\C838451874\Documents\KiCAD projects\pulser\pulser.cir
+Start Time: Thu Sep  3 18:53:03 2026
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(31): This sub-circuit name is not defined.
+X_ideal  A 1 3u
+             ^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(118): Syntax error (unexpected input).
++ VTO=4.5    $ typ. 2.5 to 5.5, but I guess the AI went for 4.5. No typical value is listed in the datasheet.
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(118): Syntax error (unexpected input).
++ VTO=4.5    $ typ. 2.5 to 5.5, but I guess the AI went for 4.5. No typical value is listed in the datasheet.
+                                                            ^^^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(119): Syntax error (unexpected input).
++ KP=38     $ hmm... is KP the gm (tranconductance), or the slope of the transcoduntactance? because it could be 56 instead? ngspice manual wants A/V2 but datasheet lists A/V. Calculated as gm^2/4/Id @ 160 A
+                                                                                                                 ^^^^^^^^^^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(119): Syntax error (unexpected input).
++ KP=38     $ hmm... is KP the gm (tranconductance), or the slope of the transcoduntactance? because it could be 56 instead? ngspice manual wants A/V2 but datasheet lists A/V. Calculated as gm^2/4/Id @ 160 A
+                                                                                                                                                                                              ^^^^^^^^^^^^^^^^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(123): Syntax error (unexpected input).
++ RS=0.002   $ ok and I'm assuming these just need to be something small
+                       ^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(119): No such parameter defined.
++ KP=38     $ hmm... is KP the gm (tranconductance), or the slope of the transcoduntactance? because it could be 56 instead? ngspice manual wants A/V2 but datasheet lists A/V. Calculated as gm^2/4/Id @ 160 A
+                        ^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(24): This sub-circuit name is not defined.
+X_ideal  A 1 1u
+             ^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(93): Node or model name expected.
+
+M1 C_int G_int E E_mos M_MAIN W=1 L=1u
+                       ^^^^^^^^^^^^^^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(118): Ignoring unknown model parameter. This may or may not be a problem.
++ VTO=4.5    $ typ. 2.5 to 5.5, but I guess the AI went for 4.5. No typical value is listed in the datasheet.
+             ^^^^^^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(118): Ignoring unknown model parameter. This may or may not be a problem.
++ VTO=4.5    $ typ. 2.5 to 5.5, but I guess the AI went for 4.5. No typical value is listed in the datasheet.
+                                                   ^^^^^^^^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(118): Ignoring unknown model parameter. This may or may not be a problem.
++ VTO=4.5    $ typ. 2.5 to 5.5, but I guess the AI went for 4.5. No typical value is listed in the datasheet.
+                                                                 ^^^^^^^^^^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(118): Ignoring unknown model parameter. This may or may not be a problem.
++ VTO=4.5    $ typ. 2.5 to 5.5, but I guess the AI went for 4.5. No typical value is listed in the datasheet.
+                                                                            ^^^^^^^^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(118): Ignoring unknown model parameter. This may or may not be a problem.
++ VTO=4.5    $ typ. 2.5 to 5.5, but I guess the AI went for 4.5. No typical value is listed in the datasheet.
+                                                                                     ^^^^^^^^^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(118): Ignoring unknown model parameter. This may or may not be a problem.
++ VTO=4.5    $ typ. 2.5 to 5.5, but I guess the AI went for 4.5. No typical value is listed in the datasheet.
++ KP=38	 			$ hmm... is KP the gm (tranconductance), or the slope of the transcoduntactance? because it could be 56 instead? ngspice manual wants A/V2 but datasheet lists A/V. Calculated as gm^2/4/Id @ 160 A
+                                                                                               ^^^^^^^^^^^^^^^^^
+C:\Users\C838451874\Documents\KiCad\10.0\SPICE\Custom Models.lib(119): Ignoring unknown model parameter. This may or may not be a problem.
++ KP=38     $ hmm... is KP the gm (tranconductance), or the slope of the transcoduntactance? because it could be 56 instead? ngspice manual wants A/V2 but datasheet lists A/V. Calculated as gm^2/4/Id @ 160 A
+            ^^^^^^^^^

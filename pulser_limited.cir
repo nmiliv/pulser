@@ -1,0 +1,109 @@
+.title limited model
+* .options method=gear
+.model __D5 D
++           rs=.06
++           cjo=559p
++           bv=650
++           ibv=0.3u
+.model __D6 D
++           rs=.0508
++           bv=650
++           ibv=0.3u
++           cjo=559p
++           tt=10n
++           roff=1e8
++           offd=1e-12
+.model BD135_mod 
++ NPN(
++ Is=40f 
++ Xti=3 
++ Eg=1.11 
++ Vaf=115.7
++ Bf=180.2 
++ Ise=40f 
++ Ne=1.363 
++ Ikf=4.927 
++ Nk=1.247 
++ Xtb=1.5 
++ Br=10 
++ Isc=85f 
++ Nc=2 
++ Ikr=0 
++ Rc=0.15 * changed from 0
++ Re=0.1 * added 
++ Cjc=19.23p 
++ Mjc=.3439 
++ Vjc=.5635 
++ Fc=.5 
++ Cje=60.49p 
++ Mje=.3589 
++ Vje=.7585 
++ Tr=116n 
++ Tf=550p 
++ Itf=1 
++ Xtf=0 
++ Vtf=10 
++ QCO=1E-10 
++ GAMMA=1E-8 
++ RCO=5)
+
+.subckt BD135 C B E
+L_c C C_int 1n
+L_b B B_int 1n
+L_e E E_int 1n
+Q_NPN C_int B_int E_int BD135_mod
+.ends
+
+* XT2 Net-_D5-K_ 0 Net-_D6-A_ Net-_D6-K_ 1_1_transformer
+* 175m
+
+V2 +24V 0 DC 24 
+V1 AC 0 PULSE( 1m 5 1u 20u 10u 98u 1m )
+
+Rsig AC gate 100
+Rgate gate 0 100k
+XQ2 coll gate emit BD135
+D1 coll filt24 __D6
+LP filt24 lpesr 175u
+RLP lpesr coll 1m
+Rsupp filt24 +24V 100
+Rpnp coll 0 100Meg
+Remit emit 0 0
+Cpnp AC 0 10n
+
+Rsnub coll snub_node 10
+Csnub snub_node filt24 1000n
+
+
+* LP lpload Net-_D6-K_ 175m 
+* Rlpload lpload Net-_D6-A_ 1m
+* XQ2 Net-_D6-A_ Net-_Q2-PadB_ 0 BD135
+* R5 Net-_D6-K_ +24V 100
+* R6 0 Net-_Q2-PadB_ 1Meg
+* R7 Net-_Q2-PadB_ AC 100k
+* Cpnpball1 0 Net-_Q2-PadB_ 5p
+* Cpnpball2 0 Net-_D6-A_ 50p
+* D6 Net-_D6-A_ Net-_D6-K_ __D6
+* Rqball Net-_D6-A_ 0 1G
+
+
+
+
+.options abstol=1n reltol=0.005 vntol=1m trtol=7 rshunt=1e9
+* .options CHGTOL=1e-12 trtol=1 abstol=100n reltol=0.01 method=gear RSERIES=0.05
+
+* .options vntol=1m trtol=7 rshunt=1e9 CHGTOL=1e-12 abstol=100n reltol=0.01 method=gear RSERIES=0.05
+
+.control
+    tran 50n 5m 0 10n
+    plot AC title "input signal voltage"
+    plot v1#branch title "input signal current" xlimit 1.2u 1.3u
+    plot v(AC) - v(gate) title "voltage across input series resistor"
+    plot v(gate) title "base voltage"
+    plot v(coll) title "collector voltage"
+    plot v(filt24) - v(coll) title "transformer primary voltage"
+    * plot v(lsload) title "transformer secondary voltage"
+    * plot v(Net-_D7-K_) - v(Net-_T1-SB_)
+.endc
+
+.end

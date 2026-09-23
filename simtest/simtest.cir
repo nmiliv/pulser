@@ -1,0 +1,21 @@
+.title KiCad schematic
+.model __D1 D
+.model __Q1 NPN
+.model __D2 D
+.tran 10u 10m
+D1 Net-_D1-A_ Net-_D1-K_ __D1
+C2 Net-_D1-K_ Net-_D1-A_ 10p
+R2 Net-_D1-K_ Net-_D1-A_ 10k
+V1 Net-_R1-Pad1_ GND DC 100
+R1 Net-_R1-Pad1_ Net-_D2-K_ 1k
+L1 Net-_D2-K_ Net-_D2-A_ .024
+L2 Net-_D1-K_ Net-_D1-A_ .216
+KT1 L1 L2 0.9
+Q1 Net-_D2-A_ Net-_Q1-B_ Net-_Q1-E_ __Q1
+R3 GND Net-_Q1-E_ 100
+V2 Net-_Q1-B_ GND PULSE( 0 5 500u 2n 2n 100u 1m )
+D2 Net-_D2-A_ Net-_D2-K_ __D2
+C1 Net-_D2-K_ Net-_D2-A_ 1u
+.plot tran v(Net-_Q1-B_, GND)
+.plot tran v(Net-_D1-K_, Net-_D1-A_)
+.end

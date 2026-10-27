@@ -656,8 +656,17 @@
       "Net-(Q2-PadB)": [
         "Default"
       ],
+      "Net-(T1-AA)": [
+        "HP_pulse"
+      ],
       "Net-(T1-SB)": [
         "VHP"
+      ],
+      "Net-(T2-AA)": [
+        "LP_pwr"
+      ],
+      "Net-(T2-SA)": [
+        "LP_pwr"
       ],
       "Vdrive": [
         "HP_pulse"
@@ -935,7 +944,7 @@
         "uuid": "afe601ee-b844-4c66-9788-64843b85386c"
       }
     ],
-    "used_designators": "D1-7,#PWR1-18,T1-2,#FLG1-5,#GND1,R1-13,J1-5,C1-3,Q1-2,RN1-2,C1_alt1,C2_alt1,V1-3,TP1-9,H1-4",
+    "used_designators": "D1-7,#PWR1-18,T1-2,#FLG1-5,#GND1,R1-14,J1-5,C1-3,Q1-2,RN1-2,C1_alt1,C2_alt1,V1-3,TP1-9,H1-4",
     "variants": []
   },
   "sheets": [
